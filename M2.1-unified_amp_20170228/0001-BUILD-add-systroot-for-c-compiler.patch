@@ -1,0 +1,28 @@
+diff --git a/cmake/linuxarm.toolchain.cmake b/cmake/linuxarm.toolchain.cmake
+index 80d0879..83a4764 100644
+--- a/cmake/linuxarm.toolchain.cmake
++++ b/cmake/linuxarm.toolchain.cmake
+@@ -54,8 +54,8 @@ find_path(MARVELL_TOOLCHAIN NAMES "arm-mrvlsdk-linux-gnueabi-gcc"
+         NO_CMAKE_FIND_ROOT_PATH
+         )
+ 
+-set(CMAKE_C_COMPILER    ${MARVELL_TOOLCHAIN}/arm-mrvlsdk-linux-gnueabi-gcc)
+-set(CMAKE_CXX_COMPILER  ${MARVELL_TOOLCHAIN}/arm-mrvlsdk-linux-gnueabi-g++)
++set(CMAKE_C_COMPILER    ${MARVELL_TOOLCHAIN}/arm-mrvlsdk-linux-gnueabi-gcc --sysroot=${CMAKE_SYSROOT})
++set(CMAKE_CXX_COMPILER  ${MARVELL_TOOLCHAIN}/arm-mrvlsdk-linux-gnueabi-g++ --sysroot=${CMAKE_SYSROOT})
+ 
+ set(CMAKE_C_FLAGS             "-Wl,--dynamic-linker=/lib/ld-linux-armhf.so.3 ${CMAKE_C_FLAGS}" CACHE STRING "" FORCE )
+ set(CMAKE_CXX_FLAGS           "-Wl,--dynamic-linker=/lib/ld-linux-armhf.so.3 ${CMAKE_CXX_FLAGS}" CACHE STRING "" FORCE )
+diff --git a/config/yocto_dmp_amp_unified.cmake b/config/yocto_dmp_amp_unified.cmake
+index 8ad0293..dc9ad59 100644
+--- a/config/yocto_dmp_amp_unified.cmake
++++ b/config/yocto_dmp_amp_unified.cmake
+@@ -29,7 +29,7 @@ option(ENABLE_MEDIA_SOURCE_FFMPEG "Enable FFMPEG media source" ON)
+ option(ENABLE_MEDIA_SOURCE_DASH "Enable DASH media source" ON)
+ option(ENABLE_MEDIA_SOURCE_NETWORK "Enable network media source" ON)
+ option(ENABLE_MEDIA_SOURCE_NOKIA_FCC "Enable Nokia FCC media source" OFF)
+-option(ENABLE_MEDIA_SOURCE_MSSP "Enable SSPK media source" ON)
++option(ENABLE_MEDIA_SOURCE_MSSP "Enable SSPK media source" OFF)
+ option(ENABLE_MEDIA_SOURCE_RTSP "Enable RTSP media source" ON)
+ 
+ option(ENABLE_MEDIA_SOURCE_DVB "" OFF)
